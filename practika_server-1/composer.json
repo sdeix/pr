@@ -1,0 +1,24 @@
+{
+    "name": "gr414_nkyu/practika_server-1",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Src\\": "core/Src/",
+            "": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "RederikLimp",
+            "email": "kirill.alisa.2004@mail.ru"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.4 | ^8.0"
+     
+     }
+     
+ }
+ 
