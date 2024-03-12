@@ -1,10 +1,10 @@
 <?php
 return [
-   'root' => 'Practika_Server-1',
-   'classes' => [
-       'app',
-       'core'
-   ],
+   //Адрес относительно домена
+   'root' => 'pop-it-mvc',
+   //Настройка директории с маршрутами
    'routes' => 'routes',
+   //Настройка директории с представлениями
    'views' => 'views'
 ];
+
