@@ -1,6 +1,6 @@
 <?php
 return [
-   'root' => 'pop-it-mvc',
+   'root' => 'Practika_Server-1',
    'classes' => [
        'app',
        'core'
