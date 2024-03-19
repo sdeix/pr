@@ -50,6 +50,14 @@ public function logout(): void
    app()->route->redirect('/hello');
 }
 
+public function job_tabel(): string
+{
+  return new View('site.job_tabel');
+}
 
+public function employee_tabel(): string
+{
+  return new View('site.employee_tabel');
+}
 
 }
