@@ -22,11 +22,12 @@ class Site
        return new View('site.hello', ['message' => 'hello working']);
    }
    public function signup(Request $request): string
-   {
-       if ($request->method==='POST' && User::create($request->all())){
-           return new View('site.signup', ['message'=>'Вы успешно зарегистрированы']);
-       }
-       return new View('site.signup');
+{
+   if ($request->method === 'POST' && User::create($request->all())) {
+       app()->route->redirect('/go');
    }
+   return new View('site.signup');
+}
+
 
 }
