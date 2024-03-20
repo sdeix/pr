@@ -8,13 +8,21 @@ use Src\Auth\IdentityInterface;
 
 class User extends Model implements IdentityInterface
 {
+    protected $table = 'сотрудники';
    use HasFactory;
 
    public $timestamps = false;
    protected $fillable = [
-       'name',
+       'Фамилия',
+       'Имя',
+       'Отчество',
+       'Пол',
+       'Дата рождения',
+       'Адрес прописки',
        'login',
-       'password'
+       'password',
+       'Роль',
+       'id кафедры'
    ];
 
    protected static function booted()
