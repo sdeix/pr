@@ -5,13 +5,13 @@ namespace Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Department extends Model
+class Discipline extends Model
 {
    protected $fillable = [
-      'departament_name'
+      'discipline_name	'
   ];
    use HasFactory;
    public $timestamps = false;
-   protected $table = 'departaments';
+   protected $table = 'disciplines';
 }
 
