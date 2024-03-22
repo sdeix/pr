@@ -35,9 +35,15 @@
       echo '</th>';
       echo '<th>';
       $disciplineid = Disciplinesemployees::where('employee_id', $user->id)->get();
+
       foreach ($disciplineid as $discipline) {
-        $disciplines = Discipline::where('id', $discipline->id)->get();
-        echo $disciplines[0]->discipline_name . ' ';
+
+        $disciplines = Discipline::where('id', $discipline->discipline_id)->get();
+
+        if(count($disciplines)!=0){
+          echo $disciplines[0]->discipline_name . ' ';
+        }
+
       }
       echo '</th>';
       echo '<th>' . $user->address . '</th>';

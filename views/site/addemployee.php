@@ -22,8 +22,8 @@
         </select></p>
         <p>Дата рождения <input type="date" name="date" id=""></p>
         <div style="margin-left: 62px;">
-            <li style="list-style-type: none"><input type="text" placeholder="login" class="form_input"></li>
-            <li style="list-style-type: none"><input type="text" placeholder="password" class="form_input"></li>
+            <li style="list-style-type: none"><input type="text" name="login" placeholder="login" class="form_input"></li>
+            <li style="list-style-type: none"><input type="text" name="password" placeholder="password" class="form_input"></li>
     </form></background-color: white;>
     <button class="form_button">Создать</button>
 
