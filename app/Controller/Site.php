@@ -77,14 +77,30 @@ class Site
     public function employees(Request $request): string
     {
         $users = User::all();
+        if ($request->method === "POST") {
+            if ($request->name) {
+                $users = User::where('name', $request->name)->get();
+            }
+        }
+
+
         return new View('site.employees', ['users' => $users]);
     }
     public function addemployee(Request $request): string
     {
         if (Auth::check()) {
             if (Auth::user()->role == 'admin') {
-                if($request->method==="POST"){
-                    User::create($request->all());
+                if ($request->method === "POST") {
+                    $img = $request->photo['size'];
+                    if ($request->photo['size'] > 0) {
+                        $uploaddir = '../public/images/';
+                        $uploadfile = '$uploaddir' . basename($request->photo['name']);
+                        if (move_uploaded_file($request->photo['tmp_name'], $uploadfile)) {
+                            $img = '/images/' . basename($request->photo['name']);
+                        }
+
+                    }
+                    User::create(['name' => $request->name, 'surname' => $request->surname, 'patronymic' => $request->patronymic, 'address' => $request->address, 'photo' => $img, 'gender' => $request->gender, 'login' => $request->login, 'password' => $request->password, 'departament_id' => $request->departament_id]);
                     app()->route->redirect('/hello');
                     return "";
                 }
@@ -92,13 +108,13 @@ class Site
                 return new View('site.addemployee', ['departaments' => $departaments]);
             }
             app()->route->redirect('/employees');
-            
+
         }
         app()->route->redirect('/employees');
     }
     public function adddepartament(Request $request): string
     {
-        if($request->method==="POST"){
+        if ($request->method === "POST") {
             Department::create($request->all());
             app()->route->redirect('/employees');
             return "";
@@ -107,7 +123,7 @@ class Site
     }
     public function adddiscipline(Request $request): string
     {
-        if($request->method==="POST"){
+        if ($request->method === "POST") {
             Discipline::create($request->all());
             app()->route->redirect('/employees');
             return "";
@@ -116,13 +132,13 @@ class Site
     }
     public function disciplineemployees(Request $request): string
     {
-        if($request->method==="POST"){
+        if ($request->method === "POST") {
             Disciplinesemployees::create($request->all());
             app()->route->redirect('/employees');
             return "";
         }
         $users = User::all();
         $disciplines = Discipline::all();
-        return new View('site.disciplineemployees', ['disciplines' => $disciplines,'users'=>$users]);
+        return new View('site.disciplineemployees', ['disciplines' => $disciplines, 'users' => $users]);
     }
 }

@@ -1,5 +1,5 @@
 <div>
-    <form style="background-color: lightgray;" method="post">
+    <form enctype="multipart/form-data" style="background-color: lightgray;" method="post">
         <H3>Добавление новых сотрудников деканата</H3>
         <input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
         <div style="margin-left: 62px;">
@@ -20,6 +20,7 @@
  <option value="М">М</option>
  <option value="Ж">Ж</option>
         </select></p>
+        <p>Фото сотрудника <input type="file" name="photo"></p>
         <p>Дата рождения <input type="date" name="date" id=""></p>
         <div style="margin-left: 62px;">
             <li style="list-style-type: none"><input type="text" name="login" placeholder="login" class="form_input"></li>

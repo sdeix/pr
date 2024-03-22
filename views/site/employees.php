@@ -1,5 +1,9 @@
 <h1>Список Сотрудников</h1>
-
+<form action="" method="post">
+<p><input type="text" name="name" placeholder="Имя"></p>
+<input name="csrf_token" type="hidden" value="<?= app()->auth::generateCSRF() ?>"/>
+    <p><input type="submit" value="Отправить"></p>
+  </form>
 <table class="table">
   <thead class="thead-dark">
     <tr>
@@ -11,6 +15,7 @@
       <th>Кафедра</th>
       <th>Дисциплины</th>
       <th>Адрес проживания</th>
+      <th>Фото сотрудника</th>
     </tr>
   </thead>
   <tbody>
@@ -47,7 +52,7 @@
       }
       echo '</th>';
       echo '<th>' . $user->address . '</th>';
-
+      echo '<th class=""><img class="img "src="' . $user->photo . '"></th>';
     }
     ?>
   </tbody>
