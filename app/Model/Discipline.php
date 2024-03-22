@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Discipline extends Model
 {
    protected $fillable = [
-      'discipline_name	'
+      'discipline_name'
   ];
    use HasFactory;
    public $timestamps = false;
