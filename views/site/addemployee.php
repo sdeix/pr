@@ -27,6 +27,9 @@
             <li style="list-style-type: none"><input type="text" name="password" placeholder="password" class="form_input"></li>
     </form></background-color: white;>
     <button class="form_button">Создать</button>
+    <?php
+    echo $message??''
+    ?>
 
     </form>
 </div>

@@ -91,6 +91,24 @@ class Site
         if (Auth::check()) {
             if (Auth::user()->role == 'admin') {
                 if ($request->method === "POST") {
+                    $validator = new Validator($request->all(), [
+                        'name' => ['required'],
+                        'surname' => ['required'],
+                        'patronymic' => ['required'],
+                        'date' => ['required'],
+                        'login' => ['required', 'unique:employees,login'],
+                        'password' => ['required']
+                    ], [
+                        'required' => 'Поле :field пусто',
+                        'unique' => 'Поле :field должно быть уникально'
+                    ]);
+
+                    if ($validator->fails()) {
+                        return new View(
+                            'site.addemployee',
+                            ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]
+                        );
+                    }
                     $img = $request->photo['size'];
                     if ($request->photo['size'] > 0) {
                         $uploaddir = '../public/images/';
@@ -115,6 +133,19 @@ class Site
     public function adddepartament(Request $request): string
     {
         if ($request->method === "POST") {
+            $validator = new Validator($request->all(), [
+                'departament_name' => ['required', 'unique:departaments,departament_name'],
+            ], [
+                'required' => 'Поле :field пусто',
+                'unique' => 'Поле :field должно быть уникально'
+            ]);
+
+            if ($validator->fails()) {
+                return new View(
+                    'site.adddepartament',
+                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]
+                );
+            }
             Department::create($request->all());
             app()->route->redirect('/employees');
             return "";
@@ -124,6 +155,19 @@ class Site
     public function adddiscipline(Request $request): string
     {
         if ($request->method === "POST") {
+            $validator = new Validator($request->all(), [
+                'discipline_name' => ['required', 'unique:disciplines,discipline_name'],
+            ], [
+                'required' => 'Поле :field пусто',
+                'unique' => 'Поле :field должно быть уникально'
+            ]);
+
+            if ($validator->fails()) {
+                return new View(
+                    'site.adddiscipline',
+                    ['message' => json_encode($validator->errors(), JSON_UNESCAPED_UNICODE)]
+                );
+            }
             Discipline::create($request->all());
             app()->route->redirect('/employees');
             return "";

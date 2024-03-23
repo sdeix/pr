@@ -7,6 +7,8 @@
         <div style="margin-left: 62px;">
     </form></background-color: white;>
     <button class="form_button">Создать</button>
-
+    <?php
+    echo $message??''
+    ?>
     </form>
 </div>
